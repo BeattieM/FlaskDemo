@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>Top 10 Repos</title>
+  <style>
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 50%;
+	}
+
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	  background-color: #dddddd;
+	}
+</style>
+</head>
+
+  <h1>{{repo.name}}</h1>
+  <a href="{{url_for('top')}}">Return to list</a>
+  <table>
+  	<tr><td>GitHub ID</td><td>{{ repo.github_id }}</td></tr>
+  	<tr><td>Stars</td><td>{{ repo.num_stars }}</td></tr>
+  	<tr><td>Link</td><td><a href="{{ repo.link }}" target="_blank">{{ repo.link }}</a></td></tr>
+  	<tr><td>Created At</td><td>{{ repo.created_at }}</td></tr>
+  	<tr><td>Pushed At</td><td>{{ repo.pushed_at }}</td></tr>
+  	<tr><td>Description</td><td>{{ repo.description }}</td></tr>
+  </table>
+
+</body>
+</html>

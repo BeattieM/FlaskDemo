@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>Top {{num}} GitHub Repos</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+	$(document).ready(function(){
+  		$("button").click(function(){
+    		$.ajax({url: "refresh", success: function(response){
+      			document.write(response);
+    		}});
+  		});
+	});
+</script>
+<style>
+	table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 30%;
+	}
+
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	  background-color: #dddddd;
+	}
+</style>
+</head>
+<body>
+
+  <h1>Top {{num}} Repos on GitHub</h1>
+  <button>Refresh Top {{num}}</button>
+  <br/>
+  <br/>
+
+  <table>
+  	<tr>
+    	<th>Name</th>
+    	<th>Stars</th>
+  	</tr>
+  	{% for repo in repos %}
+  		<tr>
+    		<td><a href="{{url_for('repo_info', github_id=repo.github_id)}}">{{ repo.name }}</a></td>
+    		<td>{{ repo.num_stars }}</td>
+  		</tr>
+  {% endfor %}
+  </table>
+
+</body>
+</html>
