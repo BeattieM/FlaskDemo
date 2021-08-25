@@ -2,6 +2,9 @@
 
 Query, store, and display the top starred repos on GitHub.
 
+## Summary
+This is a Flask based project backed by an SQLite database. Model validation are performed via Marshmallow and database integration via SQLAlchemy.
+
 ## Getting Started
 
 ### Dependencies
