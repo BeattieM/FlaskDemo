@@ -3,7 +3,7 @@
 Query, store, and display the top starred repos on GitHub.
 
 ## Summary
-This is a Flask based project backed by an SQLite database. Model validation are performed via Marshmallow and database integration via SQLAlchemy.
+This is a Flask based project locally backed by an SQLite database. Model validation are performed via Marshmallow and database integration via SQLAlchemy. The project is also deployed to Google Cloud where it is backed by a MySQL. [That can be found here.](https://starry-hearth-324007.ue.r.appspot.com/) 
 
 ## Getting Started
 

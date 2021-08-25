@@ -4,12 +4,23 @@ from github import Github
 from models.repo import Repo, RepoSchema
 from database.database_interface import DatabaseInterface
 
+project_id = os.environ.get('CLOUD_PROJECT_ID')
+db_user = os.environ.get('CLOUD_SQL_USERNAME')
+db_password = os.environ.get('CLOUD_SQL_PASSWORD')
+db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
+db_ip = os.environ.get('CLOUD_SQL_DATABASE_IP')
+instance_name = os.environ.get('CLOUD_SQL_INSTANCE_NAME')
+env = os.environ.get('ENV', 'dev')
+
 # Initialize Flask
 app = Flask(__name__)
 
-# Set sqlite database path
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'database/db.sqlite3')}"
+if env == 'dev':
+    # Set sqlite database path
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'database/db.sqlite3')}"
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{db_user}:{db_password}@{db_ip}/{db_name}?charset=utf8mb4"
 
 # Initialize Interfaces
 DatabaseInterface(app)
